@@ -20,7 +20,7 @@ LRUReplacer::~LRUReplacer() = default;
 
 auto LRUReplacer::Victim(frame_id_t *frame_id) -> bool {
   std::scoped_lock<std::mutex> lock(latch_);
-  if (lru_list_.size() == 0) {
+  if (lru_list_.empty()) {
     return false;
   }
   *frame_id = lru_list_.back();
